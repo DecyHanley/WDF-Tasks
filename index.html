@@ -1,1 +1,39 @@
-<!-- Main File -->
+<!DOCTYPE html><!-- This is an AngularJs App for a Music Collection -->
+<html data-ng-app="w2MusicApp">
+
+<head>
+  <title>Week 2 Music App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+  <script src="js/controller.js"></script>
+
+  <style type="text/css">
+      td {
+          border: solid 1px black;
+      }
+  </style>
+</head>
+
+<body data-ng-controller="w2maCtrl as w2ma">
+  <ul>
+      <li data-ng-repeat="artist in w2ma.artists | orderBy:'name':doReverse">{{ artist.name | lowercase}}</li>
+  </ul>
+
+  <table>
+    <tr data-ng-repeat="album in w2ma.albums | filter:musicFilter | orderBy:'name':doReverse">
+        <td><span data-ng-bind="artist.name"></span></td>
+        <td><span data-ng-bind="artist.album"></span></td>
+        <td><span data-ng-bind="artist.genre"></span></td>
+    </tr>
+  </table>
+
+  <input type="checkbox" data-ng-model="doReverse"/> Reverse
+
+  <select data-ng-model="musicFilter.genre">
+      <option value="">All Genres</option>
+      <option data-ng-repeat="genre in w2ma.genres" value={{genre}}>{{genre}}</option>
+  </select>
+
+  <p>Currently selected programme is {{ musicFilter }}</p>
+</body>
+
+</html>
