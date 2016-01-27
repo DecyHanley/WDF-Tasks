@@ -1,6 +1,4 @@
-# Web Development Frameworks.
-
-*Repo for WDF Tasks.*
+# Web Development Frameworks - *Repo for WDF Tasks.*
 
 ### [WDF Tasks] (https://github.com/DecyHanley/WDF-Tasks/tree/master)
 
