@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html data-ng-app="w2MusicCollection" lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>Music Collection</title>
+    <link rel="shortcut icon" href="img/music_icon.png">
+
+    <!-- Normalize CSS, Bootstrap CSS and Bootstrap Theme CDN-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="fonts/comic-neue/css/comic-neue.font.css">
+  </head>
+
+  <body data-ng-controller="w2mcCtrl as w2mc">
+    <div class="container-fluid text-vertical-center">
+      <div class="row" id="header">
+        <div class="col-md-12">
+          <h1>Music Collection</h1>
+          <hr class="small">
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            Search: <br>
+            <input type="search" name="query" size="50%" data-ng-model="query">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            Sort By: <br>
+            <select data-ng-model="orderAlbum">
+              <option value="artist">Alphabetical(Artist)</option>
+              <option value="name">Alphabetical(Album)</option>
+              <option value="-year">Newest</option>
+              <option value="year">Oldest</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            Specify Artist: <br>
+            <select data-ng-model="musicFilter.artist">
+              <option value="">All Artists</option>
+              <option data-ng-repeat="artist in w2mc.artists" value={{artist}}>{{artist}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr class="large">
+      <div class="row" id="albums">
+        <div class="col-md-12">
+          <div data-ng-repeat="album in w2mc.albums | filter:musicFilter | filter:query | orderBy:'name':doReverse | orderBy:orderAlbum">
+            <div class="col-md-4">
+              <img src={{album.image}}>
+              <ul>
+                <li>{{album.name}}</li>
+                <li>{{album.artist}} </li>
+                <li>{{album.genre}}</li>
+                <li>{{album.year}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="large">
+      <div class="row">
+        <div class="col-sm-12">
+          <p><i class="fa fa-copyright fa-lg fa-fw"></i></i>2016 Decy Hanley</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JavaScript CDN-->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- AngularJS JavaScript CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="js/controller.js"></script>
+  </body>
+</html>
