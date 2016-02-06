@@ -7,13 +7,13 @@
 
     <!-- Website Title and Icon-->
     <title>Music Collection</title>
-    <link rel="shortcut icon" href="img/music_icon.png">
+    <link rel="shortcut icon" href="img/music-colletion-icon.png">
 
     <!-- Normalize CSS, Bootstrap CSS and Bootstrap Theme CDN-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -38,7 +38,8 @@
             <div class="col-lg-6">
               Sort By: <br>
               <select data-ng-model="orderAlbum">
-                <option value="">Alphabetical (Album)</option>
+                <option value="">All Albums</option>
+                <option value="name">Alphabetical (Album)</option>
                 <option value="artist">Alphabetical (Artist)</option>
                 <option value="-year">Newest</option>
                 <option value="year">Oldest</option>
@@ -61,14 +62,17 @@
           <div class="col-lg-12">
             <div data-ng-repeat="album in w2mcCtrl.albums | filter:musicFilter | filter:query | orderBy:'name':doReverse | orderBy:orderAlbum">
               <div class="col-lg-4">
-                <hr class="large">
-                <img src={{album.image}}>
-                <ul>
-                  <li>{{album.name}}</li>
-                  <li>{{album.artist}} </li>
-                  <li>{{album.year}}</li>
-                </ul>
-                <hr class="large">
+                <div class="album">
+                  <img src="{{album.image}}">
+                  <br><br>
+                  <ul>
+                    <li><i class="fa fa-music fa-lg fa-fw"></i> {{album.name}}</li>
+                    <br>
+                    <li><i class="fa fa-user fa-lg fa-fw"></i> {{album.artist}} <i class="fa fa-calendar fa-lg fa-fw"></i> {{album.year}}</li>
+                    <br>
+                    <li><i class="fa fa-youtube fa-lg fa-fw"> </i> <a href="{{album.youtube}}" target="_blank">Youtube</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
