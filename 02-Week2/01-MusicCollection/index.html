@@ -18,61 +18,74 @@
     <link rel="stylesheet" type="text/css" href="fonts/comic-neue/css/comic-neue.font.css">
   </head>
 
-  <body data-ng-controller="w2mcCtrl as w2mc">
-    <div class="container-fluid text-vertical-center">
-      <div class="row" id="header">
-        <div class="col-md-12">
-          <h1>Music Collection</h1>
-          <hr class="small">
-        </div>
+  <body data-ng-controller="w2MusicCollectionCtrl as w2mcCtrl">
+
+    <header class="header" id="header">
+      <div class="container text-vertical-center">
         <div class="row">
-          <div class="col-md-12">
-            Search: <br>
-            <input type="search" name="query" size="50%" data-ng-model="query">
+          <div class="col-lg-12">
+            <h1>Music Collection</h1>
+            <hr class="small">
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            Sort By: <br>
-            <select data-ng-model="orderAlbum">
-              <option value="artist">Alphabetical(Artist)</option>
-              <option value="name">Alphabetical(Album)</option>
-              <option value="-year">Newest</option>
-              <option value="year">Oldest</option>
-            </select>
+          <div class="row">
+            <div class="col-lg-12">
+              <input type="search" placeholder="Search" name="query" size="50%" data-ng-model="query">
+            </div>
           </div>
-          <div class="col-md-6">
-            Specify Artist: <br>
-            <select data-ng-model="musicFilter.artist">
-              <option value="">All Artists</option>
-              <option data-ng-repeat="artist in w2mc.artists" value={{artist}}>{{artist}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <hr class="large">
-      <div class="row" id="albums">
-        <div class="col-md-12">
-          <div data-ng-repeat="album in w2mc.albums | filter:musicFilter | filter:query | orderBy:'name':doReverse | orderBy:orderAlbum">
-            <div class="col-md-4">
-              <img src={{album.image}}>
-              <ul>
-                <li>{{album.name}}</li>
-                <li>{{album.artist}} </li>
-                <li>{{album.genre}}</li>
-                <li>{{album.year}}</li>
-              </ul>
+          <br>
+          <div class="row">
+            <div class="col-lg-6">
+              <select data-ng-model="orderAlbum">
+                <option value="" disabled selected>Sort By:</option>
+                <option value="name">Alphabetical (Album)</option>
+                <option value="artist">Alphabetical (Artist)</option>
+                <option value="-year">Newest</option>
+                <option value="year">Oldest</option>
+              </select>
+            </div>
+            <div class="col-lg-6">
+              <select data-ng-model="musicFilter.artist">
+                <option value="" disabled selected>Specify Artist:</option>
+                <option value="">All Artists</option>
+                <option data-ng-repeat="artist in w2mcCtrl.artists" value={{artist}}>{{artist}}</option>
+              </select>
             </div>
           </div>
         </div>
       </div>
-      <hr class="large">
-      <div class="row">
-        <div class="col-sm-12">
-          <p><i class="fa fa-copyright fa-lg fa-fw"></i></i>2016 Decy Hanley</p>
+    </header>
+
+    <section class="albums" id="albums">
+      <div class="container text-vertical-center">
+        <div class="row">
+          <div class="col-lg-12">
+            <div data-ng-repeat="album in w2mcCtrl.albums | filter:musicFilter | filter:query | orderBy:'name':doReverse | orderBy:orderAlbum">
+              <div class="col-lg-4">
+                <hr class="large">
+                <img src={{album.image}}>
+                <ul>
+                  <li>{{album.name}}</li>
+                  <li>{{album.artist}} </li>
+                  <li>{{album.year}}</li>
+                </ul>
+                <hr class="large">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <footer class="footer" id="footer">
+      <div class="container text-vertical-center">
+        <div class="row">
+          <div class="col-sm-12">
+            <hr class="large">
+            <p><i class="fa fa-copyright fa-lg fa-fw"></i></i>2016 Decy Hanley</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- jQuery and Bootstrap JavaScript CDN-->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
